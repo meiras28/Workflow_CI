@@ -1,0 +1,10 @@
+
+DAGSHUB REPOSITORY REPOSITORI - SML SUBMISSION
+
+Platform         : DagsHub Remote MLflow Tracking
+Repository URL   : https://dagshub.com/MeiraAisha/SMSML_MeiraAishaShofiya
+
+Nama Mahasiswa : Meira Aisha Shofiya
+Kelas          : Menjadi Machine Learning Operations Engineer (MLOps)
+
+https://dagshub.com/meiras28/SMSML_MeiraAishaShofiya
