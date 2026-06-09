@@ -38,4 +38,4 @@ jobs:
         MLFLOW_TRACKING_USERNAME: "meiras28"
         MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
       run: |
-        mlflow run . --entry-point main
+        mlflow run . --entry-point main --run-name "CI_Run_${{ github.run_number }}"
