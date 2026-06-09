@@ -1,4 +1,4 @@
-name: Machine Learning Workflow CI
+name: Credit Scoring Automated Training Pipeline
 
 on:
   push:
@@ -9,27 +9,33 @@ on:
       - main
 
 jobs:
-  run-ml-pipeline:
+  ml_pipeline_execution:
+    name: Build Environment and Run MLflow Project
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.12.7']
 
     steps:
-    - name: Checkout Repository
+    - name: Fetch Source Code From GitHub
       uses: actions/checkout@v3
 
-    - name: Set up Python
+    - name: Initialize Python Runtime Environment
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
 
-    - name: Install Dependencies
+    - name: Install Core Application Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run MLflow Project
+    - name: Execute MLflow Project Tracking Pipeline
       env:
         MLFLOW_ALLOW_FILE_STORE: "true"
         MLFLOW_TRACKING_USERNAME: "meiras28"
-        MLFLOW_TRACKING_PASSWORD: "793493e8b73d613aae82ee4fdc952248480949cf793493e8b73d613aae82ee4fdc952248480949cf"
+        MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_TOKEN }}
       run: |
         mlflow run . --entry-point main
